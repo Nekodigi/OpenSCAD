@@ -1,0 +1,1 @@
+function next(i,n) = (i+1)%n;

@@ -1,10 +1,10 @@
 use <noise/nz_perlin3.scad>
 
-r = 100;
+r = 50;
 fr = 3;
-h = 20;
-bh = 5;
-ns = 0.01;
+h = 10;
+bh = 3;
+ns = 0.02;
 
 //hill h=10, bh=2
 /*union(){
@@ -20,7 +20,7 @@ difference(){
     cylinder(bh, r, r, $fn=6);
     intersection(){
         cylinder(h, r, r, $fn=6);
-            random_voronoi(n = 200, round = 3, min = 0, max = r*1.5, seed = 42, thickness = 0.2, center = true, nuclei = false);
+            random_voronoi(n = 200, round = 1.5, min = 0, max = r*1.5, seed = 42, thickness = 0.2, center = true, nuclei = false);
     }
 }
 difference(){
@@ -54,7 +54,7 @@ function normalize(v) = v / (sqrt(v[0] * v[0] + v[1] * v[1]));
 module voronoi(points, L = 200, thickness = 1, round = 6, nuclei = true) {
 	for (p = points) {
 		difference() {
-            ch = nz_perlin3(p[0]*ns, p[1]*ns, 1, 0)*h+h*0.4;
+            ch = nz_perlin3(p[0]*ns, p[1]*ns, 1, 0)*h+h*0.3;
             translate(p)
             linear_extrude(ch, scale = 0)
             translate(-p)
